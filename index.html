@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Banca 113 — Comida fresca e moderna. Pastéis, sucos, sanduíches e bebidas geladas.">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" type="image/png" href="img/banca113_logo.png">
     <title>Banca 113 - Comida Fresca e Moderna</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
     <script>
         (function() {
             try {
@@ -17,7 +17,6 @@
                 if (saved === 'true') {
                     document.documentElement.classList.add('dark-mode');
                 } else if (saved === null) {
-                    // se não houver preferência salva, respeitar preferências do sistema
                     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
                         document.documentElement.classList.add('dark-mode');
                     }
@@ -37,9 +36,11 @@
                     class="d-inline-block align-text-top"
                 >
             </a>
+            
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="#home">Início</a></li>
@@ -50,7 +51,15 @@
                         <a class="nav-link position-relative" href="#" data-bs-toggle="modal" data-bs-target="#cartModal">Carrinho <span id="cart-count" class="badge bg-primary rounded-pill ms-1" aria-live="polite" aria-atomic="true">0</span></a>
                     </li>
                 </ul>
-                <button type="button" id="dark-mode-toggle" class="btn btn-outline-secondary ms-3" aria-label="Alternar modo escuro" aria-pressed="false">🌙 Modo Escuro</button>
+                <button 
+                    type="button" 
+                    id="dark-mode-toggle-desktop" 
+                    class="btn btn-outline-secondary ms-3 d-none d-lg-block" 
+                    aria-label="Alternar modo escuro (Desktop)" 
+                    aria-pressed="false"
+                >
+                    <i class="fas fa-moon me-2"></i> Modo Escuro
+                </button>
             </div>
         </div>
     </nav>
@@ -89,7 +98,7 @@
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <div class="row">
-                            <div class="col-md-6 col-lg-3 mb-4">
+                            <div class="col-12 col-md-6 col-lg-3 mb-4">
                                 <div class="card h-100 border-0 shadow-sm">
                                     <img src="img/pastel.jpg" class="card-img-top" alt="Pastel">
                                     <div class="card-body text-center">
@@ -107,7 +116,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-lg-3 mb-4">
+                            <div class="col-12 col-md-6 col-lg-3 mb-4">
                                 <div class="card h-100 border-0 shadow-sm">
                                     <img src="img/caldo.jpg" class="card-img-top" alt="Caldo de Cana">
                                     <div class="card-body text-center">
@@ -125,7 +134,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-lg-3 mb-4">
+                            <div class="col-12 col-md-6 col-lg-3 mb-4">
                                 <div class="card h-100 border-0 shadow-sm">
                                     <img src="img/sanduiche.jpg" class="card-img-top" alt="Sanduiche">
                                     <div class="card-body text-center">
@@ -143,7 +152,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-lg-3 mb-4">
+                            <div class="col-12 col-md-6 col-lg-3 mb-4">
                                 <div class="card h-100 border-0 shadow-sm">
                                     <img src="img/refri.jpg" class="card-img-top" alt="Refrigerante">
                                     <div class="card-body text-center">
@@ -224,13 +233,24 @@
     </footer>
 
     <div class="toast-container position-fixed top-0 end-0 p-3">
-        <div id="custom-toast" class="toast align-items-center text-white bg-primary border-0" role="alert">
+        <div id="custom-toast" class="toast align-items-center text-white bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="d-flex">
                 <div class="toast-body" id="toast-message"></div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Fechar"></button>
             </div>
         </div>
     </div>
+
+    <button 
+        type="button" 
+        id="dark-mode-toggle-fab" 
+        class="btn btn-primary rounded-circle shadow-lg position-fixed bottom-0 end-0 m-3 d-lg-none" 
+        aria-label="Alternar modo escuro (Mobile)" 
+        aria-pressed="false"
+        style="width: 50px; height: 50px; font-size: 1.5rem; z-index: 1050;"
+    >
+        <i class="fas fa-moon"></i>
+    </button>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>

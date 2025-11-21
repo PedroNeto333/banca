@@ -29,23 +29,31 @@ body {
 /* Navbar */
 .navbar {
     background-color: var(--card-bg) !important;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, box-shadow 0.3s ease;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05); 
 }
-/* Remover a borda no dark mode */
 .dark-mode .navbar {
     border-bottom: none;
 }
 
+/* EFEITO DE SOMBRA NA NAVBAR AO ROLAR */
+.navbar.scrolled {
+    box-shadow: 0 4px 12px var(--shadow) !important;
+}
+.dark-mode .navbar.scrolled {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+}
+
 /* Forçar cor dos links da navbar conforme o tema */
-.navbar .nav-link {
+.navbar .nav-link,
+.navbar .navbar-brand {
     color: var(--text-color) !important;
 }
 .navbar .nav-link:hover {
     color: var(--primary) !important;
 }
 
-/* Hero Section e demais seções SEM classes de BG Bootstrap */
+/* Seções */
 .hero {
     padding: 100px 0;
     background-color: var(--bg-color);
@@ -58,7 +66,6 @@ body {
 /* Cards com hover suave e arredondamento Apple */
 .card {
     background-color: var(--card-bg);
-    /* Ajustado para a animação de hover */
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s;
     border-radius: 12px; 
     border: none !important; 
@@ -67,11 +74,10 @@ body {
 
 /* ANIMAÇÃO HOVER CARD */
 .card:hover {
-    transform: translateY(-4px) scale(1.02); /* Escala ligeiramente maior para destaque */
-    box-shadow: 0 10px 30px var(--shadow); /* Sombra um pouco mais forte */
+    transform: translateY(-4px) scale(1.01); 
+    box-shadow: 0 10px 20px var(--shadow);
 }
 
-/* Estilo para o texto interno dos cards (que era text-muted) */
 .card-text {
     color: var(--muted-text) !important;
 }
@@ -80,7 +86,7 @@ body {
 .rating {
     display: flex;
     align-items: center;
-    justify-content: center; /* Centralizar as estrelas */
+    justify-content: center; 
     margin-top: 10px;
 }
 
@@ -91,9 +97,8 @@ body {
     transition: color 0.2s;
 }
 
-.star:hover,
 .star.active {
-    color: #ffc107; /* Amarelo para estrelas ativas */
+    color: #ffc107; /* Amarelo para estrelas ativas/selecionadas */
 }
 
 .rating-text {
@@ -102,7 +107,7 @@ body {
     color: var(--muted-text);
 }
 
-/* Modal do Carrinho */
+/* Modal e Footer */
 .modal-content {
     background-color: var(--card-bg);
     color: var(--text-color);
@@ -116,14 +121,12 @@ body {
     padding: 10px 0;
     border-bottom: 1px solid rgba(134, 134, 139, 0.3); 
 }
-
-/* Footer agora usa o mesmo background do Card/Navbar */
 footer {
     background-color: var(--card-bg) !important; 
     color: var(--text-color) !important; 
 }
 
-/* Estilo dos Botões */
+/* Botões */
 .btn-primary {
     background-color: var(--primary) !important;
     border-color: var(--primary) !important;
@@ -149,7 +152,7 @@ footer {
     background-color: var(--primary) !important;
 }
 
-/* Input/Textarea com bordas suaves */
+/* Input/Textarea e Placeholder */
 .form-control {
     background-color: var(--card-bg);
     color: var(--text-color);
@@ -157,39 +160,16 @@ footer {
     transition: all 0.2s ease;
     border-radius: 8px;
 }
-
 .form-control:focus {
     border-color: var(--primary);
     box-shadow: 0 0 0 0.25rem rgba(0, 122, 255, 0.25);
 }
-
-/* CORREÇÃO DO PLACEHOLDER NO DARK MODE */
 .dark-mode ::placeholder { 
-    /* Força o placeholder a usar a cor de texto muted (clara) */
     color: var(--muted-text) !important; 
-    opacity: 1; /* Garante que não haja transparência extra */
+    opacity: 1; 
 }
 
-/* KEYFRAMES para o efeito "PULSE" */
-@keyframes pulse-primary {
-    0% {
-        box-shadow: 0 0 0 0 var(--primary);
-    }
-    70% {
-        box-shadow: 0 0 0 10px rgba(10, 132, 255, 0); 
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(10, 132, 255, 0);
-    }
-}
-
-/* ANIMAÇÃO HOVER BOTÃO */
-.add-to-cart:hover {
-    animation: pulse-primary 1s ease-out; /* Aplica a animação ao passar o mouse */
-}
-
-
-/* Animações Fade-In (para as seções) */
+/* Animações */
 .fade-in {
     opacity: 0;
     transform: translateY(20px);
@@ -201,32 +181,80 @@ footer {
     transform: translateY(0);
 }
 
+/* -------------------------------------- */
+/* ESTILO MODERNO DO BOTÃO FLUTUANTE (FAB) */
+/* -------------------------------------- */
 
-/* Responsividade */
-@media (max-width: 768px) {
+#dark-mode-toggle-fab {
+    /* Sobrepõe o estilo padrão do btn-primary para o FAB */
+    background-color: rgba(128, 128, 128, 0.2) !important; /* Fundo cinza suave e transparente */
+    border: none !important; /* Sem borda */
+    color: var(--text-color) !important; /* Cor do ícone baseada no tema */
+    
+    /* Efeito de Vidro Fosco (Glassmorphism) */
+    backdrop-filter: blur(8px); 
+    -webkit-backdrop-filter: blur(8px); 
+    
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important; /* Sombra sutil */
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Ajuste do FAB no Dark Mode */
+.dark-mode #dark-mode-toggle-fab {
+    background-color: rgba(0, 0, 0, 0.3) !important; /* Fundo mais escuro e transparente */
+    color: var(--text-color) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Efeito de hover/active para o FAB */
+#dark-mode-toggle-fab:hover,
+#dark-mode-toggle-fab:active {
+    background-color: rgba(128, 128, 128, 0.3) !important; /* Levemente mais opaco no hover */
+    color: var(--primary) !important; /* Destacar cor no hover */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3) !important;
+}
+
+.dark-mode #dark-mode-toggle-fab:hover,
+.dark-mode #dark-mode-toggle-fab:active {
+    background-color: rgba(0, 0, 0, 0.4) !important;
+    color: var(--primary) !important;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* -------------------------------------- */
+/* OTIMIZAÇÃO DE RESPONSIVIDADE (MOBILE) */
+/* -------------------------------------- */
+
+@media (max-width: 991.98px) {
+    .hero {
+        padding: 50px 0;
+    }
     .hero h2 {
         font-size: 2rem;
     }
-    .hero p {
-        font-size: 1rem;
-    }
-    .card {
-        margin-bottom: 20px;
-    }
+    
+    /* Logo menor na navbar para celular */
     .navbar-brand img {
         height: 30px !important;
     }
+
+    /* Ajuste de tamanho e margem para o FAB mobile */
+    #dark-mode-toggle-fab {
+        width: 45px !important; 
+        height: 45px !important;
+        font-size: 1.3rem !important;
+        margin: 1rem !important; 
+    }
+
     #cart-items .item {
         flex-direction: column;
         align-items: flex-start;
+        gap: 5px;
     }
-}
-
-@media (min-width: 769px) and (max-width: 1200px) {
-    .hero h2 {
-        font-size: 2.5rem;
-    }
-    .hero p {
-        font-size: 1.1rem;
+    
+    /* Remove hover complexo em telas touch */
+    .card:hover {
+        transform: none;
+        box-shadow: 0 5px 15px var(--shadow); 
     }
 }
