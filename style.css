@@ -1,0 +1,232 @@
+/* Variáveis para Modo Claro/Escuro */
+:root {
+    --bg-color: #f5f5f7; /* Fundo Leve (Quase Branco) */
+    --text-color: #1d1d1f; /* Texto Escuro */
+    --card-bg: #fff; /* Fundo de Card/Navbar */
+    --muted-text: #86868b; /* Texto de Suporte/Muted Escuro */
+    --primary: #007aff; /* Azul Primário Apple (Light) */
+    --shadow: rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode {
+    --bg-color: #1c1c1e; /* Fundo Escuro Profundo (Típico iOS) */
+    --text-color: #f5f5f7; /* Texto Claro (QUASE BRANCO) */
+    --card-bg: #2c2c2e; /* Fundo de Card/Navbar Escuro */
+    --muted-text: #a1a1a6; /* Texto de Suporte/Muted Claro */
+    --primary: #0a84ff; /* Azul Primário Apple (Dark) */
+    --shadow: rgba(0, 0, 0, 0.3); /* Sombra mais sutil no escuro */
+}
+
+/* Aplica fundo e cor do texto a todo o corpo. */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Navbar */
+.navbar {
+    background-color: var(--card-bg) !important;
+    transition: background-color 0.3s;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05); 
+}
+/* Remover a borda no dark mode */
+.dark-mode .navbar {
+    border-bottom: none;
+}
+
+/* Forçar cor dos links da navbar conforme o tema */
+.navbar .nav-link {
+    color: var(--text-color) !important;
+}
+.navbar .nav-link:hover {
+    color: var(--primary) !important;
+}
+
+/* Hero Section e demais seções SEM classes de BG Bootstrap */
+.hero {
+    padding: 100px 0;
+    background-color: var(--bg-color);
+}
+#products, #contact, #about {
+    background-color: var(--bg-color);
+    transition: background-color 0.3s;
+}
+
+/* Cards com hover suave e arredondamento Apple */
+.card {
+    background-color: var(--card-bg);
+    /* Ajustado para a animação de hover */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s;
+    border-radius: 12px; 
+    border: none !important; 
+    color: var(--text-color); 
+}
+
+/* ANIMAÇÃO HOVER CARD */
+.card:hover {
+    transform: translateY(-4px) scale(1.02); /* Escala ligeiramente maior para destaque */
+    box-shadow: 0 10px 30px var(--shadow); /* Sombra um pouco mais forte */
+}
+
+/* Estilo para o texto interno dos cards (que era text-muted) */
+.card-text {
+    color: var(--muted-text) !important;
+}
+
+/* Sistema de Avaliações */
+.rating {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centralizar as estrelas */
+    margin-top: 10px;
+}
+
+.star {
+    font-size: 1.2em;
+    color: #ddd;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.star:hover,
+.star.active {
+    color: #ffc107; /* Amarelo para estrelas ativas */
+}
+
+.rating-text {
+    margin-left: 10px;
+    font-size: 0.9em;
+    color: var(--muted-text);
+}
+
+/* Modal do Carrinho */
+.modal-content {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border-radius: 12px; 
+    border: none;
+}
+#cart-items .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(134, 134, 139, 0.3); 
+}
+
+/* Footer agora usa o mesmo background do Card/Navbar */
+footer {
+    background-color: var(--card-bg) !important; 
+    color: var(--text-color) !important; 
+}
+
+/* Estilo dos Botões */
+.btn-primary {
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+    color: #fff !important;
+    border-radius: 8px; 
+}
+
+.btn-success {
+    background-color: #34c759 !important; /* Verde iOS/Apple */
+    border-color: #34c759 !important;
+    color: #fff !important;
+    border-radius: 8px;
+}
+
+.btn-outline-secondary {
+    color: var(--text-color) !important;
+    border-color: var(--muted-text) !important; 
+    background: transparent !important;
+    border-radius: 8px;
+}
+
+.badge.bg-primary {
+    background-color: var(--primary) !important;
+}
+
+/* Input/Textarea com bordas suaves */
+.form-control {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid rgba(134, 134, 139, 0.3); 
+    transition: all 0.2s ease;
+    border-radius: 8px;
+}
+
+.form-control:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.25rem rgba(0, 122, 255, 0.25);
+}
+
+/* CORREÇÃO DO PLACEHOLDER NO DARK MODE */
+.dark-mode ::placeholder { 
+    /* Força o placeholder a usar a cor de texto muted (clara) */
+    color: var(--muted-text) !important; 
+    opacity: 1; /* Garante que não haja transparência extra */
+}
+
+/* KEYFRAMES para o efeito "PULSE" */
+@keyframes pulse-primary {
+    0% {
+        box-shadow: 0 0 0 0 var(--primary);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(10, 132, 255, 0); 
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(10, 132, 255, 0);
+    }
+}
+
+/* ANIMAÇÃO HOVER BOTÃO */
+.add-to-cart:hover {
+    animation: pulse-primary 1s ease-out; /* Aplica a animação ao passar o mouse */
+}
+
+
+/* Animações Fade-In (para as seções) */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .hero h2 {
+        font-size: 2rem;
+    }
+    .hero p {
+        font-size: 1rem;
+    }
+    .card {
+        margin-bottom: 20px;
+    }
+    .navbar-brand img {
+        height: 30px !important;
+    }
+    #cart-items .item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1200px) {
+    .hero h2 {
+        font-size: 2.5rem;
+    }
+    .hero p {
+        font-size: 1.1rem;
+    }
+}
