@@ -2,7 +2,7 @@ Projeto Final: Landing Page Banca 113
 
 🎯 Contexto Acadêmico
 
-Este projeto foi desenvolvido como parte de uma avaliação da disciplina de [Nome da Disciplina] no curso de [Seu Curso - Ex: Sistemas de Informação / Análise e Desenvolvimento de Sistemas]. O objetivo principal era aplicar conhecimentos práticos em desenvolvimento web para criar uma solução de comunicação digital para um cliente real.
+Este projeto foi desenvolvido como parte de uma avaliação da disciplina de Programação para Internet no curso de TSI - Tecnologia de Sistemas para Internet. O objetivo principal era aplicar conhecimentos práticos em desenvolvimento web para criar uma solução de comunicação digital para um cliente real.
 
 💼 Cliente e Objetivo Comercial
 
